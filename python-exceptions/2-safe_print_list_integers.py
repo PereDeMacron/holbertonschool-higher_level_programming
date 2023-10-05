@@ -6,7 +6,8 @@ def safe_print_list_integers(my_list=[], x=0):
     for i in range(x):
         try:
             if isinstance(my_list[i], int):
-                print("{}".format(my_list[i]), end=" " if count == 0 else " ")
+                separator = " " if count == 0 else " "
+                print("{:d}".format(my_list[i]), end=separator)
                 count += 1
         except IndexError:
             break

@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+
 def safe_print_list(my_list=[], x=0):
     element = 0
 
@@ -9,7 +10,7 @@ def safe_print_list(my_list=[], x=0):
 
             if element == x:
                 break
-        except:
+        except Exception:
             pass
 
     print()

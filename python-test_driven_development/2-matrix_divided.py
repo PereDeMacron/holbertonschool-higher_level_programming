@@ -9,7 +9,8 @@ def matrix_divided(matrix, div):
                 if type(j) not in [int, float]:
                     raise TypeError
             except TypeError:
-                print("matrix must be a matrix (list of lists) of integers/floats")
+                print("matrix must be a matrix (list of lists) \
+                    of integers/floats")
                 break_out_flag = True
                 break
         if break_out_flag:

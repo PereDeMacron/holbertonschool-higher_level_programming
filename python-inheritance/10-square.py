@@ -1,12 +1,15 @@
 #!/usr/bin/python3
-BaseGeometry = __import__('7-base_geometry').BaseGeometry
+"""def a class BaseGeometry"""
 Rectangle = __import__('9-rectangle').Rectangle
 
 class Square(Rectangle):
-    
+    """ Represent a square from rectangle class """
     def __init__(self, size):
-        BaseGeometry.integer_validator(self, "size", size)
-        super().__init__(size, size)
+        """ init new Square """
+        self.integer_validator("size", size)
+        self.__size = size
+        super().__init__(self.__size, self.__size)
 
     def area(self):
-        return self.__width * self.__height
+        """ returns a str with the area """
+        return super().area()

@@ -1,45 +1,68 @@
 #!/usr/bin/python3
 class Square:
-
+    """ A class that defines a square by its size
+    """
     def __init__(self, size=0, position=(0, 0)):
+        """ Method to initialize the square object
+        """
         self.size = size
         self.position = position
 
     @property
     def size(self):
-        return (self._size)
+        """ Method to returns the size value
+        """
+        return self.__size
 
     @size.setter
     def size(self, value):
+        """ Method to set the size value of the square object
+        """
         if not isinstance(value, int):
             raise TypeError("size must be an integer")
-        elif value < 0:
+        if value < 0:
             raise ValueError("size must be >= 0")
-        self._size = value
+        self.__size = value
 
     @property
     def position(self):
-        return (self._position)
+        """ Method that returns the position value
+        """
+        return self.__position
 
     @position.setter
     def position(self, value):
-        if (not isinstance(value, tuple) or
-                len(value) != 2 or
-                not all(isinstance(num, int) for num in value) or
-                not all(num >= 0 for num in value)):
+        """ Method that sets the position value of a square object
+        """
+        if not isinstance(value, tuple):
             raise TypeError("position must be a tuple of 2 positive integers")
-        self._position = value
+        if len(value) != 2:
+            raise TypeError("position must be a tuple of 2 positive integers")
+        if not isinstance(value[0], int):
+            raise TypeError("position must be a tuple of 2 positive integers")
+        if not isinstance(value[1], int):
+            raise TypeError("position must be a tuple of 2 positive integers")
+        if value[0] < 0 or value[1] < 0:
+            raise TypeError("position must be a tuple of 2 positive integers")
+        self.__position = value
 
     def area(self):
-        return (self.size * self._size)
+        """ Method that returns the square are of the object
+        """
+        return (self.__size ** 2)
 
     def my_print(self):
-        if self._size == 0:
-            print("")
-            return
-
-        [print("") for i in range(0, self._position[1])]
-        for i in range(0, self._size):
-            [print(" ", end="") for j in range(0, self._position[0])]
-            [print("#", end="") for k in range(0, self._size)]
-            print("")
+        """ Method that prints a # square according
+        to the size value
+        """
+        if self.size == 0:
+            print()
+        else:
+            for i in range(self.position[1]):
+                print()
+            for i in range(0, self.size):
+                for k in range(self.position[0]):
+                    print(" ", end='')
+                for j in range(self.size):
+                    print("#", end='')
+                print()

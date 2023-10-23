@@ -1,27 +1,15 @@
 #!/usr/bin/python3
-"""A module for saving Python objects to a JSON file."""
+"""Add all arguments to a Python list and save them to a file."""
+import sys
 
-import json
+if __name__ == "__main__":
+    save_to_json_file = __import__('7-save_to_json_file').save_to_json_file
+    load_from_json_file = \
+        __import__('8-load_from_json_file').load_from_json_file
 
-def save_to_json_file(my_obj, filename):
-    """
-    Save a Python object to a JSON file.
-
-    This function takes a Python object and a filename as arguments and writes
-    the object's JSON representation to the specified file.
-
-    Args:
-        my_obj: The Python object to be saved to a JSON file.
-        filename (str): The name of the file where the JSON representation
-            will be stored.
-
-    Raises:
-        IOError: If there is an issue with opening or writing to the file.
-
-    Example:
-        # Save a Python dictionary to a JSON file
-        data = {'name': 'John', 'age': 30, 'city': 'New York'}
-        save_to_json_file(data, 'data.json')
-    """
-    with open(filename, "w") as f:
-        json.dump(my_obj, f)
+    try:
+        items = load_from_json_file("add_item.json")
+    except FileNotFoundError:
+        items = []
+    items.extend(sys.argv[1:])
+    save_to_json_file(items, "add_item.json")

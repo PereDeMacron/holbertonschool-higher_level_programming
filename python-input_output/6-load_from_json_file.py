@@ -1,9 +1,18 @@
 #!/usr/bin/python3
-"""Defines a JSON file-writing function."""
+""" Module that creates an Object from a JSON file
+"""
 import json
 
 
-def save_to_json_file(my_obj, filename):
-    """Write an object to a text file using JSON representation."""
-    with open(filename, "w") as f:
-        json.dump(my_obj, f)
+def load_from_json_file(filename):
+    """ Function that creates an Object from a JSON file
+
+    Args:
+        filename: textfile name
+
+    Raises:
+        Exception: when the object can't be encoded
+
+    """
+    with open(filename, 'r', encoding="utf-8") as f:
+        return json.load(f)

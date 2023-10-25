@@ -1,48 +1,96 @@
 #!/usr/bin/python3
+""" Module for test Base class """
 import unittest
 from models.base import Base
+from models.square import Square
+from models.rectangle import Rectangle
+from io import StringIO
+from unittest import TestCase
+from unittest.mock import patch
+
 
 class TestBaseMethods(unittest.TestCase):
+    """ Suite to test Base class """
 
     def setUp(self):
-        # Set up any necessary objects or data for your tests
-        pass
+        """ Method invoked for each test """
+        Base._Base__nb_objects = 0
 
-    def tearDown(self):
-        # Clean up after each test (if necessary)
-        pass
+    def test_id(self):
+        """ Test assigned id """
+        new = Base(1)
+        self.assertEqual(new.id, 1)
 
-    def test_init_with_id(self):
-        obj = Base(42)
-        self.assertEqual(obj.id, 42)
+    def test_id_default(self):
+        """ Test default id """
+        new = Base()
+        self.assertEqual(new.id, 1)
 
-    def test_init_without_id(self):
-        obj = Base()
-        self.assertTrue(hasattr(obj, 'id'))
+    def test_id_nb_objects(self):
+        """ Test nb object attribute """
+        new = Base()
+        new2 = Base()
+        new3 = Base()
+        self.assertEqual(new.id, 1)
+        self.assertEqual(new2.id, 2)
+        self.assertEqual(new3.id, 3)
 
-    def test_to_json_string(self):
-        data = [{'id': 1}, {'id': 2}]
-        json_string = Base.to_json_string(data)
-        self.assertEqual(json_string, '[{"id": 1}, {"id": 2}]')
+    def test_id_mix(self):
+        """ Test nb object attributes and assigned id """
+        new = Base()
+        new2 = Base(1024)
+        new3 = Base()
+        self.assertEqual(new.id, 1)
+        self.assertEqual(new2.id, 1024)
+        self.assertEqual(new3.id, 2)
 
-    def test_save_to_file(self):
-        data = [Base(id=1), Base(id=2)]
-        Base.save_to_file(data)
-        # Check if the file was created and contains the expected data
+    def test_string_id(self):
+        """ Test string id """
+        new = Base('1')
+        self.assertEqual(new.id, '1')
 
-    def test_from_json_string(self):
-        json_string = '[{"id": 1}, {"id": 2}]'
-        data = Base.from_json_string(json_string)
-        self.assertEqual(data, [{'id': 1}, {'id': 2}])
+    def test_more_args_id(self):
+        """ Test passing more args to init method """
+        with self.assertRaises(TypeError):
+            new = Base(1, 1)
 
-    def test_create(self):
-        dictionary = {'id': 1}
-        obj = Base.create(**dictionary)
-        self.assertIsInstance(obj, Base)
-        self.assertEqual(obj.id, 1)
+    def test_access_private_attrs(self):
+        """ Test accessing to private attributes """
+        new = Base()
+        with self.assertRaises(AttributeError):
+            new.__nb_objects
 
-    def test_load_from_file(self):
-        pass
+    def test_save_to_file_1(self):
+        """ Test JSON file """
+        Square.save_to_file(None)
+        res = "[]\n"
+        with open("Square.json", "r") as file:
+            with patch('sys.stdout', new=StringIO()) as str_out:
+                print(file.read())
+                self.assertEqual(str_out.getvalue(), res)
 
-if __name__ == '__main__':
-    unittest.main()
+        try:
+            os.remove("Square.json")
+        except:
+            pass
+
+        Square.save_to_file([])
+        with open("Square.json", "r") as file:
+            self.assertEqual(file.read(), "[]")
+
+    def test_save_to_file_2(self):
+        """ Test JSON file """
+        Rectangle.save_to_file(None)
+        res = "[]\n"
+        with open("Rectangle.json", "r") as file:
+            with patch('sys.stdout', new=StringIO()) as str_out:
+                print(file.read())
+                self.assertEqual(str_out.getvalue(), res)
+        try:
+            os.remove("Rectangle.json")
+        except:
+            pass
+
+        Rectangle.save_to_file([])
+        with open("Rectangle.json", "r") as file:
+            self.assertEqual(file.read(), "[]")

@@ -2,6 +2,7 @@
 
 from models.base import Base
 
+
 class Rectangle(Base):
     """Class to represent a rectangle and perform operations on it.
 
@@ -94,7 +95,8 @@ class Rectangle(Base):
 
     @property
     def x(self):
-        """Returns the X-coordinate of the top-left corner of the rectangle."""
+        """Returns the X-coordinate of the
+        top-left corner of the rectangle."""
         return self.__x
 
     @x.setter
@@ -117,7 +119,8 @@ class Rectangle(Base):
 
     @property
     def y(self):
-        """Returns the Y-coordinate of the top-left corner of the rectangle."""
+        """Returns the Y-coordinate of the
+        top-left corner of the rectangle."""
         return self.__y
 
     @y.setter
@@ -147,7 +150,8 @@ class Rectangle(Base):
         Displays the rectangle using '#' characters with offsets in x and y.
 
         Note:
-            It first prints empty lines for the y-offset and then prints '#' characters for the rectangle.
+            It first prints empty lines for the y-offset
+            and then prints '#' characters for the rectangle.
         """
         for _ in range(self.__y):
             print()
@@ -161,10 +165,12 @@ class Rectangle(Base):
 
     def update(self, *args, **kwargs):
         """
-        Assigns arguments to attributes, supports both arguments and key-value pairs.
+        Assigns arguments to attributes,
+        supports both arguments and key-value pairs.
 
         Args:
-            *args: Arguments to update the attributes (in the order: id, width, height, x, y).
+            *args: Arguments to update the attributes
+            (in the order: id, width, height, x, y).
             **kwargs: Key-value pairs to update the attributes.
         """
         if args:

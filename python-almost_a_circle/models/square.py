@@ -2,6 +2,7 @@
 
 from models.rectangle import Rectangle
 
+
 class Square(Rectangle):
     """Class to represent a square and perform operations on it.
 
@@ -23,13 +24,15 @@ class Square(Rectangle):
 
     @property
     def size(self):
-        """Returns the length of the square's side (equivalent to the width of the rectangle)."""
+        """Returns the length of the square's side
+        (equivalent to the width of the rectangle)."""
         return self.width
 
     @size.setter
     def size(self, value):
         """
-        Sets the length of the square's side (equivalent to the width and height of the rectangle).
+        Sets the length of the square's side
+        (equivalent to the width and height of the rectangle).
 
         Args:
             value (int): New length of the side.
@@ -39,14 +42,17 @@ class Square(Rectangle):
 
     def __str__(self):
         """Returns a string representation of the square."""
-        return "[Square] ({}) {}/{} - {}".format(self.id, self.x, self.y, self.width)
+        return "[Square]\
+        ({}) {}/{} - {}".format(self.id, self.x, self.y, self.width)
 
     def update(self, *args, **kwargs):
         """
-        Assigns arguments to attributes, supports both arguments and key-value pairs.
+        Assigns arguments to attributes,
+        supports both arguments and key-value pairs.
 
         Args:
-            *args: Arguments to update the attributes (in the order: id, size, x, y).
+            *args: Arguments to update the attributes
+            (in the order: id, size, x, y).
             **kwargs: Key-value pairs to update the attributes.
         """
         if args:

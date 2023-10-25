@@ -3,11 +3,13 @@
 import json
 import os
 
+
 class Base:
     """Base class for managing objects and saving them in JSON format.
 
     Attributes:
-        __nb_objects (int): A class-level attribute to keep track of the number of objects created.
+        __nb_objects (int): A class-level attribute to keep
+        track of the number of objects created.
     """
 
     __nb_objects = 0
@@ -17,7 +19,8 @@ class Base:
         Initializes a new object.
 
         Args:
-            id (int): The object's identifier. If not specified, a unique identifier is assigned.
+            id (int): The object's identifier. If not specified,
+            a unique identifier is assigned.
         """
         if id is None:
             Base.__nb_objects += 1
@@ -101,7 +104,8 @@ class Base:
     @classmethod
     def load_from_file(cls):
         """
-        Loads objects from a JSON file and creates instances using the `create` method.
+        Loads objects from a JSON file and creates
+        instances using the `create` method.
 
         Args:
             cls (class): The class from which to create the objects.
@@ -136,10 +140,12 @@ class Base:
 
     def update(self, *args, **kwargs):
         """
-        Updates the object's attributes based on the specified arguments or key-value pairs.
+        Updates the object's attributes based on the
+        specified arguments or key-value pairs.
 
         Args:
-            *args: Arguments to update the attributes (in the order: id, width, height, x, y).
+            *args: Arguments to update the attributes
+            (in the order: id, width, height, x, y).
             **kwargs: Key-value pairs to update the attributes.
         """
         if args:

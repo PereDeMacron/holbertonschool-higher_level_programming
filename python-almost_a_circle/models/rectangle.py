@@ -1,8 +1,10 @@
 #!/usr/bin/python3
 from models.base import Base
 
+
 class Rectangle(Base):
-    """Classe pour représenter un rectangle et effectuer des opérations sur celui-ci."""
+    """Classe pour représenter un rectangle et
+    effectuer des opérations sur celui-ci."""
 
     current_id = 0  # Initialise une variable de classe pour suivre l'ID actuel
 
@@ -139,10 +141,12 @@ class Rectangle(Base):
 
     def display(self):
         """
-        Affiche le rectangle en utilisant des caractères '#' avec des décalages en x et y.
+        Affiche le rectangle en utilisant des caractères
+        '#' avec des décalages en x et y.
 
         Note:
-            Affiche d'abord des lignes vides pour le décalage en y, puis des caractères '#' pour le rectangle.
+            Affiche d'abord des lignes vides pour le décalage en y,
+            puis des caractères '#' pour le rectangle.
         """
         for _ in range(self.__y):
             print()
@@ -150,16 +154,18 @@ class Rectangle(Base):
             print(" " * self.__x + "#" * self.__width)
 
     def __str__(self):
-        """Renvoie une représentation en string de caractères du rectangle."""
+        """Renvoie une représentation en string de caractère du rectangle."""
         return "[Rectangle] ({}) {}/{} - {}/{}".format(
             self.id, self.__x, self.__y, self.__width, self.__height)
 
     def update(self, *args, **kwargs):
         """
-        Affecte les arguments aux attributs, prend en charge à la fois les arguments et les paires clé-valeur.
+        Affecte les arguments aux attributs,
+        prend en charge à la fois les arguments et les paires clé-valeur.
 
         Args:
-            *args: Arguments pour mettre à jour les attributs (dans l'ordre : id, width, height, x, y).
+            *args: Arguments pour mettre à jour les attributs
+            (dans l'ordre : id, width, height, x, y).
             **kwargs: Paires clé-valeur pour mettre à jour les attributs.
         """
         if args:

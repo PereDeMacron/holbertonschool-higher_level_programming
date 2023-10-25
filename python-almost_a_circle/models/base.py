@@ -2,6 +2,7 @@
 import json
 import os
 
+
 class Base:
     """La classe de base pour gérer des objets et les sauvegarder en JSON."""
 
@@ -12,7 +13,8 @@ class Base:
         Initialise un nouvel objet.
 
         Args:
-            id (int): L'identifiant de l'objet, S'il n'est pas spécifier, un identifiant unique est attribue.
+            id (int): L'identifiant de l'objet, S'il n'est pas spécifier,
+            un identifiant unique est attribue.
         """
         if id is None:
             Base.__nb_objects += 1
@@ -105,7 +107,8 @@ class Base:
     @classmethod
     def load_from_file(cls):
         """
-        Charge des objets à partir d'un fichier JSON et les crée en utilisant la méthode `create`.
+        Charge des objets à partir d'un fichier JSON et
+        les crée en utilisant la méthode `create`.
 
         Args:
             cls (class): La classe à partir de laquelle créer les objets.
@@ -146,10 +149,12 @@ class Base:
 
     def update(self, *args, **kwargs):
         """
-        Met à jour les attributs de l'objet en fonction des arguments ou des paires clé-valeur spécifiés.
+        Met à jour les attributs de l'objet en fonction
+        des arguments ou des paires clé-valeur spécifiés.
 
         Args:
-            *args: Arguments pour mettre à jour les attributs (dans l'ordre : id, width, height, x, y).
+            *args: Arguments pour mettre à jour les attributs
+            (dans l'ordre : id, width, height, x, y).
             **kwargs: Paires clé-valeur pour mettre à jour les attributs.
 
         Example:

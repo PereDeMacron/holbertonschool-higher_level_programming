@@ -1,20 +1,23 @@
 #!/usr/bin/python3
+
 import json
 import os
 
-
 class Base:
-    """La classe de base pour gérer des objets et les sauvegarder en JSON."""
+    """Base class for managing objects and saving them in JSON format.
+
+    Attributes:
+        __nb_objects (int): A class-level attribute to keep track of the number of objects created.
+    """
 
     __nb_objects = 0
 
     def __init__(self, id=None):
         """
-        Initialise un nouvel objet.
+        Initializes a new object.
 
         Args:
-            id (int): L'identifiant de l'objet, S'il n'est pas spécifier,
-            un identifiant unique est attribue.
+            id (int): The object's identifier. If not specified, a unique identifier is assigned.
         """
         if id is None:
             Base.__nb_objects += 1
@@ -25,13 +28,13 @@ class Base:
     @staticmethod
     def to_json_string(list_dictionaries):
         """
-        Converti une liste de dictionaries en une string JSON.
+        Converts a list of dictionaries into a JSON string.
 
         Args:
-            list_dictionaries (list): List de dictionaries à convertir.
+            list_dictionaries (list): List of dictionaries to convert.
 
         Returns:
-            str: string JSON représentant la liste de dictionaries
+            str: JSON string representing the list of dictionaries.
         """
         if list_dictionaries is None or len(list_dictionaries) == 0:
             return "[]"
@@ -40,14 +43,11 @@ class Base:
     @classmethod
     def save_to_file(cls, list_objs):
         """
-        Sauvegarde une list d'objets dans un fichier JSON.
+        Saves a list of objects to a JSON file.
 
         Args:
-            cls (class): La classe à laquelle les objets appartiennent.
-            list_objs (list): Liste d'objets à sauvegarder.
-
-        Example:
-            Base.save_to_file([obj1, obj2, obj3])
+            cls (class): The class to which the objects belong.
+            list_objs (list): List of objects to save.
         """
         if list_objs is None:
             list_objs = []
@@ -63,17 +63,14 @@ class Base:
     @classmethod
     def from_json_string(cls, json_string):
         """
-        Convertit une string JSON en une liste de dictionnaires.
+        Converts a JSON string into a list of dictionaries.
 
         Args:
-            cls (class): La classe à laquelle les objets appartiennent.
-            json_string (str): string JSON à convertir.
+            cls (class): The class to which the objects belong.
+            json_string (str): JSON string to convert.
 
         Returns:
-            list: Liste de dictionnaires.
-
-        Example:
-            data = Base.from_json_string(json_data)
+            list: List of dictionaries.
         """
         if not json_string:
             return []
@@ -82,17 +79,14 @@ class Base:
     @classmethod
     def create(cls, **dictionary):
         """
-        Crée un nouvel objet à partir d'un dictionnaire de valeurs initiales.
+        Creates a new object from a dictionary of initial values.
 
         Args:
-            cls (class): La classe à partir de laquelle créer l'objet.
-            **dictionary (dict): Dictionnaire de valeurs initiales.
+            cls (class): The class from which to create the object.
+            **dictionary (dict): Dictionary of initial values.
 
         Returns:
-            object: Nouvel objet créé avec les valeurs spécifiées.
-
-        Example:
-            obj = Base.create(id=1, width=10, height=20)
+            object: New object created with the specified values.
         """
         if cls.__name__ == "Rectangle":
             dummy = cls(1, 1)
@@ -107,17 +101,13 @@ class Base:
     @classmethod
     def load_from_file(cls):
         """
-        Charge des objets à partir d'un fichier JSON et
-        les crée en utilisant la méthode `create`.
+        Loads objects from a JSON file and creates instances using the `create` method.
 
         Args:
-            cls (class): La classe à partir de laquelle créer les objets.
+            cls (class): The class from which to create the objects.
 
         Returns:
-            list: Liste d'objets créés.
-
-        Example:
-            objects = Base.load_from_file()
+            list: List of objects created.
         """
         filename = f"{cls.__name__}.json"
 
@@ -137,28 +127,20 @@ class Base:
 
     def to_dictionary(self):
         """
-        Convertit l'objet en un dictionnaire représentant ses attributs.
+        Converts the object into a dictionary representing its attributes.
 
         Returns:
-            dict: Dictionnaire des attributs de l'objet.
-
-        Example:
-            obj_dict = obj.to_dictionary()
+            dict: Dictionary of the object's attributes.
         """
         return self.__dict__
 
     def update(self, *args, **kwargs):
         """
-        Met à jour les attributs de l'objet en fonction
-        des arguments ou des paires clé-valeur spécifiés.
+        Updates the object's attributes based on the specified arguments or key-value pairs.
 
         Args:
-            *args: Arguments pour mettre à jour les attributs
-            (dans l'ordre : id, width, height, x, y).
-            **kwargs: Paires clé-valeur pour mettre à jour les attributs.
-
-        Example:
-            obj.update(id=2, width=30, x=5)
+            *args: Arguments to update the attributes (in the order: id, width, height, x, y).
+            **kwargs: Key-value pairs to update the attributes.
         """
         if args:
             attrs = ["id", "width", "height", "x", "y"]

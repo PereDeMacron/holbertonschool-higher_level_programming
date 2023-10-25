@@ -1,55 +1,53 @@
 #!/usr/bin/python3
+
 from models.rectangle import Rectangle
 
-
 class Square(Rectangle):
-    """Classe pour représenter un carré et effectuer
-    des opérations sur celui-ci."""
+    """Class to represent a square and perform operations on it.
+
+    Attributes:
+        None
+    """
 
     def __init__(self, size, x=0, y=0, id=None):
         """
-        Initialise un objet Square.
+        Initializes a Square object.
 
         Args:
-            size (int): Longueur du côté du carré.
-            x (int): Coordonnée X du coin supérieur gauche.
-            y (int): Coordonnée Y du coin supérieur gauche.
-            id (int): Identifiant de l'objet (facultatif).
+            size (int): Length of the square's side.
+            x (int): X-coordinate of the top-left corner.
+            y (int): Y-coordinate of the top-left corner.
+            id (int): Object identifier (optional).
         """
         super().__init__(size, size, x, y, id)
 
     @property
     def size(self):
-        """Renvoie la longueur du côté du carré
-        (équivalent à la largeur du rectangle)."""
+        """Returns the length of the square's side (equivalent to the width of the rectangle)."""
         return self.width
 
     @size.setter
     def size(self, value):
         """
-        Définit la longueur du côté du carré
-        (équivalent à la largeur et la hauteur du rectangle).
+        Sets the length of the square's side (equivalent to the width and height of the rectangle).
 
         Args:
-            value (int): Nouvelle longueur du côté.
+            value (int): New length of the side.
         """
         self.width = value
         self.height = value
 
     def __str__(self):
-        """Renvoie une représentation en string de caractères du carré."""
-        return "[Square] \
-        ({}) {}/{} - {}".format(self.id, self.x, self.y, self.width)
+        """Returns a string representation of the square."""
+        return "[Square] ({}) {}/{} - {}".format(self.id, self.x, self.y, self.width)
 
     def update(self, *args, **kwargs):
         """
-        Affecte les arguments aux attributs, prend en charge
-        à la fois les arguments et les paires clé-valeur.
+        Assigns arguments to attributes, supports both arguments and key-value pairs.
 
         Args:
-            *args: Arguments pour mettre à jour les attributs
-            (dans l'ordre : id, size, x, y).
-            **kwargs: Paires clé-valeur pour mettre à jour les attributs.
+            *args: Arguments to update the attributes (in the order: id, size, x, y).
+            **kwargs: Key-value pairs to update the attributes.
         """
         if args:
             attrs = ["id", "size", "x", "y"]
@@ -66,10 +64,10 @@ class Square(Rectangle):
 
     def to_dictionary(self):
         """
-        Renvoie un dictionnaire représentant l'objet Square.
+        Returns a dictionary representing the Square object.
 
         Returns:
-            dict: Dictionnaire avec les attributs de l'objet.
+            dict: Dictionary with the object's attributes.
         """
         return {
             "id": self.id,

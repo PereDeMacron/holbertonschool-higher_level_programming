@@ -1,37 +1,40 @@
 #!/usr/bin/python3
+
 from models.base import Base
 
-
 class Rectangle(Base):
-    """Classe pour représenter un rectangle et
-    effectuer des opérations sur celui-ci."""
+    """Class to represent a rectangle and perform operations on it.
 
-    current_id = 0  # Initialise une variable de classe pour suivre l'ID actuel
+    Attributes:
+        current_id (int): Class-level attribute to track the current ID.
+    """
+
+    current_id = 0
 
     @classmethod
     def increment_id(cls):
         """
-        Incrémente l'ID actuel et renvoie la nouvelle valeur.
+        Increments the current ID and returns the new value.
 
         Returns:
-            int: Nouvelle valeur de l'ID actuel.
+            int: New value of the current ID.
         """
         cls.current_id += 1
         return cls.current_id
 
     def __init__(self, width, height, x=0, y=0, id=None):
         """
-        Initialise un objet Rectangle.
+        Initializes a Rectangle object.
 
         Args:
-            width (int): Largeur du rectangle.
-            height (int): Hauteur du rectangle.
-            x (int): Coordonnée X du coin supérieur gauche.
-            y (int): Coordonnée Y du coin supérieur gauche.
-            id (int): Identifiant de l'objet (facultatif).
+            width (int): Width of the rectangle.
+            height (int): Height of the rectangle.
+            x (int): X-coordinate of the top-left corner.
+            y (int): Y-coordinate of the top-left corner.
+            id (int): Object identifier (optional).
 
         Note:
-            Si l'ID n'est pas spécifié, il est incrémenté automatiquement.
+            If ID is not specified, it is automatically incremented.
         """
         super().__init__(id)
         if id is None:
@@ -45,20 +48,20 @@ class Rectangle(Base):
 
     @property
     def width(self):
-        """Renvoie la largeur du rectangle."""
+        """Returns the width of the rectangle."""
         return self.__width
 
     @width.setter
     def width(self, value):
         """
-        Définit la largeur du rectangle.
+        Sets the width of the rectangle.
 
         Args:
-            value (int): Nouvelle largeur.
+            value (int): New width.
 
         Raises:
-            TypeError: Si la valeur n'est pas un entier.
-            ValueError: Si la valeur est inférieure ou égale à zéro.
+            TypeError: If the value is not an integer.
+            ValueError: If the value is less than or equal to zero.
         """
         if type(value) is not int:
             raise TypeError("width must be an integer")
@@ -68,20 +71,20 @@ class Rectangle(Base):
 
     @property
     def height(self):
-        """Renvoie la hauteur du rectangle."""
+        """Returns the height of the rectangle."""
         return self.__height
 
     @height.setter
     def height(self, value):
         """
-        Définit la hauteur du rectangle.
+        Sets the height of the rectangle.
 
         Args:
-            value (int): Nouvelle hauteur.
+            value (int): New height.
 
         Raises:
-            TypeError: Si la valeur n'est pas un entier.
-            ValueError: Si la valeur est inférieure ou égale à zéro.
+            TypeError: If the value is not an integer.
+            ValueError: If the value is less than or equal to zero.
         """
         if type(value) is not int:
             raise TypeError("height must be an integer")
@@ -91,20 +94,20 @@ class Rectangle(Base):
 
     @property
     def x(self):
-        """Renvoie la coordonnée X du coin supérieur gauche du rectangle."""
+        """Returns the X-coordinate of the top-left corner of the rectangle."""
         return self.__x
 
     @x.setter
     def x(self, value):
         """
-        Définit la coordonnée X du coin supérieur gauche du rectangle.
+        Sets the X-coordinate of the top-left corner of the rectangle.
 
         Args:
-            value (int): Nouvelle coordonnée X.
+            value (int): New X-coordinate.
 
         Raises:
-            TypeError: Si la valeur n'est pas un entier.
-            ValueError: Si la valeur est inférieure à zéro.
+            TypeError: If the value is not an integer.
+            ValueError: If the value is less than zero.
         """
         if type(value) is not int:
             raise TypeError("x must be an integer")
@@ -114,20 +117,20 @@ class Rectangle(Base):
 
     @property
     def y(self):
-        """Renvoie la coordonnée Y du coin supérieur gauche du rectangle."""
+        """Returns the Y-coordinate of the top-left corner of the rectangle."""
         return self.__y
 
     @y.setter
     def y(self, value):
         """
-        Définit la coordonnée Y du coin supérieur gauche du rectangle.
+        Sets the Y-coordinate of the top-left corner of the rectangle.
 
         Args:
-            value (int): Nouvelle coordonnée Y.
+            value (int): New Y-coordinate.
 
         Raises:
-            TypeError: Si la valeur n'est pas un entier.
-            ValueError: Si la valeur est inférieure à zéro.
+            TypeError: If the value is not an integer.
+            ValueError: If the value is less than zero.
         """
         if type(value) is not int:
             raise TypeError("y must be an integer")
@@ -136,17 +139,15 @@ class Rectangle(Base):
         self.__y = value
 
     def area(self):
-        """Renvoie l'aire du rectangle."""
+        """Returns the area of the rectangle."""
         return self.__width * self.__height
 
     def display(self):
         """
-        Affiche le rectangle en utilisant des caractères
-        '#' avec des décalages en x et y.
+        Displays the rectangle using '#' characters with offsets in x and y.
 
         Note:
-            Affiche d'abord des lignes vides pour le décalage en y,
-            puis des caractères '#' pour le rectangle.
+            It first prints empty lines for the y-offset and then prints '#' characters for the rectangle.
         """
         for _ in range(self.__y):
             print()
@@ -154,19 +155,17 @@ class Rectangle(Base):
             print(" " * self.__x + "#" * self.__width)
 
     def __str__(self):
-        """Renvoie une représentation en string de caractère du rectangle."""
+        """Returns a string representation of the rectangle."""
         return "[Rectangle] ({}) {}/{} - {}/{}".format(
             self.id, self.__x, self.__y, self.__width, self.__height)
 
     def update(self, *args, **kwargs):
         """
-        Affecte les arguments aux attributs,
-        prend en charge à la fois les arguments et les paires clé-valeur.
+        Assigns arguments to attributes, supports both arguments and key-value pairs.
 
         Args:
-            *args: Arguments pour mettre à jour les attributs
-            (dans l'ordre : id, width, height, x, y).
-            **kwargs: Paires clé-valeur pour mettre à jour les attributs.
+            *args: Arguments to update the attributes (in the order: id, width, height, x, y).
+            **kwargs: Key-value pairs to update the attributes.
         """
         if args:
             attrs = ["id", "width", "height", "x", "y"]
@@ -186,10 +185,10 @@ class Rectangle(Base):
 
     def to_dictionary(self):
         """
-        Renvoie un dictionnaire représentant l'objet Rectangle.
+        Returns a dictionary representing the Rectangle object.
 
         Returns:
-            dict: Dictionnaire avec les attributs de l'objet.
+            dict: Dictionary with the object's attributes.
         """
         return {
             "id": self.id,

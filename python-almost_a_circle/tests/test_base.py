@@ -4,11 +4,9 @@ from models.base import Base
 class TestBaseMethods(unittest.TestCase):
 
     def setUp(self):
-        # Set up any necessary objects or data for your tests
         pass
 
     def tearDown(self):
-        # Clean up after each test (if necessary)
         pass
 
     def test_init_with_id(self):
@@ -27,7 +25,6 @@ class TestBaseMethods(unittest.TestCase):
     def test_save_to_file(self):
         data = [Base(id=1), Base(id=2)]
         Base.save_to_file(data)
-        # Check if the file was created and contains the expected data
 
     def test_from_json_string(self):
         json_string = '[{"id": 1}, {"id": 2}]'

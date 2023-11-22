@@ -1,1 +1,2 @@
+/* tout sélectionner */
 SHOW DATABASES;

@@ -1,4 +1,4 @@
---Import the database dump from hbtn_0d_tvshows to your MySQL server
+-- Import the database dump from hbtn_0d_tvshows to your MySQL server
 SELECT t.`title`, g.`name`
   FROM `tv_shows` AS t
        LEFT JOIN `tv_show_genres` AS s

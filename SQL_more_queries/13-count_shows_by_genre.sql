@@ -1,4 +1,4 @@
---Import the database dump from hbtn_0d_tvshows to your MySQL server
+-- Import the database dump from hbtn_0d_tvshows to your MySQL server
 SELECT g.`name` AS `genre`,
        COUNT(*) AS `number_of_shows`
   FROM `tv_genres` AS g

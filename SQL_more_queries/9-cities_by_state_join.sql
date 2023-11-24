@@ -1,4 +1,4 @@
---lists all cities contained in the database
+-- lists all cities contained in the database
 SELECT c.`id`, c.`name`, s.`name`
  FROM `cities` AS c
        INNER JOIN `states` AS s

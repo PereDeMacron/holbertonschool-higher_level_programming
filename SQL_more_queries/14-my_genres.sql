@@ -1,3 +1,4 @@
+--Import the database dump from hbtn_0d_tvshows to your MySQL server
 SELECT g.`name`
   FROM `tv_genres` AS g
        INNER JOIN `tv_show_genres` AS s

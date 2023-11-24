@@ -1,2 +1,2 @@
--- show what's insinde the firs_table
+-- Shows the CREATE TABLE statement
 SHOW CREATE TABLE first_table

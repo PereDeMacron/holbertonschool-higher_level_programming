@@ -1,4 +1,7 @@
 #!/usr/bin/python3
+"""
+Prints the State object with the name passed as argument from the db
+"""
 import sys
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
